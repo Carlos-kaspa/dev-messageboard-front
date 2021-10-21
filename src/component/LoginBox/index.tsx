@@ -18,13 +18,20 @@ const LoginBoxWrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        @media(max-width: 700px) {
+            position: fixed;
+            top: 50px;
+        } 
+      
         
     `
     const Strong = styled.strong`
         font-size: 32px;
         line-height: 36px;
-
+        @media(max-width: 700px) {
+            position: absolute;
+            top: 40px;
+        } 
     `
 
     const SignIn = styled.a`
@@ -45,6 +52,11 @@ const LoginBoxWrapper = styled.div`
         :hover {
             filter: brightness(0.9);
         }
+
+        @media(max-width: 700px) {
+            position: absolute;
+            top: 400px;
+        } 
     `
     
 export const LoginBox = () => {
