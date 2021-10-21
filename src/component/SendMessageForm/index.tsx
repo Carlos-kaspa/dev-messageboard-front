@@ -13,6 +13,13 @@ const SendMessageFormWrapper = styled.div`
     align-items: center;
     text-align: center;
     position: relative;
+
+    @media(max-width: 700px) {
+        height: 140px;
+        padding: 0;
+    }
+
+
 `
 
 const SignOutButton = styled.button`
@@ -30,6 +37,13 @@ const SignOutButton = styled.button`
         filter: brightness(0.9);
     }
 
+    @media(max-width: 700px) {
+        position: fixed;
+        right: 15px;
+        left: auto;
+        top: 10px;
+    }
+
 
 `
 
@@ -37,7 +51,6 @@ const UserInfo = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
-
 `
 
 const UserImageDiv = styled.div`
@@ -45,6 +58,9 @@ const UserImageDiv = styled.div`
     background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
     border-radius: 50%;
     line-height: 0;
+    @media(max-width: 700px) {
+        display: none;
+    }
 `
 
 const UserImage = styled.img`
@@ -52,17 +68,24 @@ const UserImage = styled.img`
     height: 94px;
     border-radius: 50% ;
     border: 6px solid #121214;
+    
 `
 const UserName = styled.strong`
     font-size: 24px;
     line-height: 30px;
     margin-top: 16px;
+    @media(max-width: 700px) {
+        display: none;
+    }
 `
 const UserGithub = styled.span`
     display: flex;
     align-items: center;
     margin-top: 8px;
     color: #c4c4cc;
+    @media(max-width: 700px) {
+        display: none;
+    }
 
 `
 
@@ -73,6 +96,14 @@ const Form = styled.form`
     margin-top: 48px;
     background: #202024;
     width: 400px;
+    @media(max-width: 700px) {
+       margin-top: 0;
+       position: fixed;
+       bottom: 0;
+       left: 0;
+       width: 100vw;
+    }
+
 `
 
 const FormLabel = styled.label`
@@ -81,6 +112,10 @@ const FormLabel = styled.label`
     background: #29292e;
     font-weight: bold;
     text-align: left;
+
+    @media(max-width: 700px) {
+     display: none;
+    }
 `
 const TextArea = styled.textarea`
     background: transparent;
@@ -98,6 +133,14 @@ const TextArea = styled.textarea`
 
     ::placeholder {
         color: #9d9d99;
+    }
+    @media(max-width: 700px) {
+        height: 20px;
+        background: rgba(255,255,255,0.1);
+        color:  #ffcd1e;
+        font-size: 14px;
+        line-height: 20px;
+        border: 0;
     }
 `
 
@@ -118,6 +161,12 @@ const SubmitButton = styled.button`
     cursor: pointer;
     :hover{
         filter: brightness(0.9)
+    }
+
+    @media(max-width: 700px) {
+      height: 40px;
+      border-radius: 30px;
+      margin: 5px 20px;
     }
 `
 export const SendMessageForm = () => {

@@ -77,6 +77,15 @@ const Message = styled.li`
     :nth-child(even) {
         align-self: flex-end;
         margin-left: 3rem;
+    }
+
+    @media(max-width: 700px) {
+      padding: 10px;
+      :nth-child(even){
+        align-self: flex-start;
+        margin-left: 0;
+        margin-right:3rem;
+      }
     }       
 
 `
@@ -84,18 +93,30 @@ const Message = styled.li`
 const MessageContent = styled.p`
     font-size: 20px;
     line-height: 28px;
+    @media(max-width: 700px) {
+      font-size: 14px;
+    }       
+    
 `
 
 const MessageUser = styled.div`
     margin-top: 16px;
     display: flex;
     align-items: center;
+    @media(max-width: 700px) {
+        margin-top: 2px;
+    } 
+
 `
 const UserImageDiv = styled.div`
     padding: 2px;
     background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
     border-radius: 50%;
     line-height: 0;
+    @media(max-width: 700px) {
+      padding: 1px;
+    }
+
 `
 
 const UserImage = styled.img`
@@ -103,15 +124,22 @@ const UserImage = styled.img`
     height: 30px;
     border-radius: 50% ;
     border: 4px solid #121214;
+    
 `
 const UserName = styled.span`
     margin-left: 12px;
     font-size: 16px;
+    @media(max-width: 700px) {
+      font-size: 12px;
+    }   
 
 `
 
 const MessageTimeStamp = styled.span`
     font-size: 8px;
+    @media(max-width: 700px) {
+        align-self: flex-end;
+    }
 `
 
 const Strong = styled.strong`
