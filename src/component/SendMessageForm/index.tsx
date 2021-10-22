@@ -1,11 +1,16 @@
 import styled from "styled-components"
 import { VscGithubInverted, VscSignOut } from "react-icons/vsc"
-import { FormEvent, useContext, useState } from "react"
+import { FormEvent, useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/auth"
 import { api } from "../../services/api"
+import { HiArrowRight } from "react-icons/hi";
+
 
 const SendMessageFormWrapper = styled.div`
     background: #1b1b1f;
+    background: linear-gradient(170deg,transparent 10%, #db11a9be 48%, #16cedbd1 100%);
+
+    border-radius: 20px;
     padding: 24px;
     align-self: center;
     display: flex;
@@ -55,7 +60,7 @@ const UserInfo = styled.header`
 
 const UserImageDiv = styled.div`
     padding: 3px;
-    background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
+    background: linear-gradient(100deg, #ff008e 0.48%, #42c9ff 100%);
     border-radius: 50%;
     line-height: 0;
     @media(max-width: 700px) {
@@ -145,9 +150,10 @@ const TextArea = styled.textarea`
 `
 
 const SubmitButton = styled.button`
-    background: #ff008e;
+    background: #0aedf5d2;
     margin: 24px;
     padding: 0 32px;
+    border-radius: 30px;
     height: 56px;
     color: #09090a;
     font-size: 14px;
@@ -166,15 +172,38 @@ const SubmitButton = styled.button`
     @media(max-width: 700px) {
       height: 40px;
       border-radius: 30px;
-      margin: 5px 20px;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 15px;
+      margin-bottom: auto;
+      margin-top: auto;
+      padding: 0;
+      width: 3rem;
+      background: transparent;
+      color: #ff008e;
     }
 `
+const getWindowDimensions = () => {
+    const { innerWidth: width } = window;
+    return width < 700 
+}
+
 export const SendMessageForm = () => {
     const { user, signOut } = useContext(AuthContext)
     const [ message, setMessage ] = useState<string>('')
-
+    const [isMobileSize, setIsMobileSize] = useState(getWindowDimensions());
+    
     
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileSize(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+    }, [])
+    
     const handleSendMessage = async (e:FormEvent) => {
         e.preventDefault()
 
@@ -208,7 +237,7 @@ export const SendMessageForm = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
                 />
-                <SubmitButton onClick={(e) => handleSendMessage(e)}> Enviar </SubmitButton>
+                <SubmitButton onClick={(e) => handleSendMessage(e)}> {isMobileSize ? <HiArrowRight size='32' /> : 'enviar'} </SubmitButton>
             </Form>
         </UserInfo>
 
