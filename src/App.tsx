@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react'
 import styled from 'styled-components'
+import { BackgroundVideo } from './component/BackgroundVideo'
 import { LoginBox } from './component/LoginBox'
 import { MessageList } from './component/MessageList'
 import { SendMessageForm } from './component/SendMessageForm'
 import { AuthContext } from './context/auth'
-import logoImage from './assets/logo.svg'
+import logoImage from '/assets/logo.svg'
+
 
 const LogoImage = styled.img`
     height: 28px;
@@ -12,6 +14,7 @@ const LogoImage = styled.img`
 
     @media(max-width: 700px) {
       height: 10px;
+      
     }
             
 `
@@ -45,6 +48,7 @@ export const App = () => {
         <div style={{width: '100%', display: 'flex', alignContent: 'center',alignItems: 'center'}}>
           <LogoImage src={logoImage} alt="DOWhile event logo by rocketseat" />
         </div>
+        <BackgroundVideo />
         <Main>
           <MessageList />
         {!!user ? <SendMessageForm/> :<LoginBox />}
