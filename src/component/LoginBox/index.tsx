@@ -94,6 +94,19 @@ const LoginBoxWrapper = styled.div`
         } 
     `
 
+    const Message2 = styled.p`
+        font-size: 14px;
+        line-height: 14px;
+        font-family: 'Roboto', sans-serif;
+        color:#c6ebf0d2;
+        
+
+        @media(max-width: 700px) {
+            position: absolute;
+            bottom: 3rem;
+            width: 300px;
+        } 
+    `
     const SignIn = styled.a`
         background: rgb(255,0,142);
         background: linear-gradient(90deg, #dac4c4 52%, #0b91dfcf 52%);
@@ -178,7 +191,7 @@ export const LoginBox = () => {
             </SignIn>
             <br/>
             <br/>
-            {randomMessageIndex === 0 ? <Message> pegou a referência de Akira ? </Message> : null}
+            {randomMessageIndex === 0 ? <Message2> pegou a referência de Akira ? </Message2> : null}
         </LoginBoxWrapper>
     )
 }
