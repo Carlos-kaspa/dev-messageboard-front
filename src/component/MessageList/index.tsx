@@ -23,74 +23,73 @@ interface IMessages {
 const MessageListWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    max-height: 90vh;
+    max-height: 100%;
     justify-content: space-between;
     align-items: flex-start;
     overflow-y: hidden;
+    flex-wrap: wrap;
+    @media(max-width: 700px) {
+        padding: 10px;
+        height: 100%;
+        max-width: 100%;
+
+     
+    }   
     
 `
 
-const MessageListComponent = styled.ul`
-    list-style: none;
+const MessageListComponent = styled.div`
     display: flex;
     width: 100%;
     max-height:90vh;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
     flex: 1;
     overflow-y: scroll;
     /* width */
     ::-webkit-scrollbar {
-    width: 5px;
+        width: 5px;
+    
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: #1d1d20;
+        background: #1d1d20;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: #888;
+        background: #888;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
-
+        background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
     }
     
 `
 
-const Message = styled.li`
+const Message = styled.span`
+    border-radius: 30px;
     max-width: 440px;
-    min-width: 300px;
-    padding: 20px;
-    margin-right: 3rem;
+    padding: 10px 2rem;
+    margin-right: 1rem;
+    margin-left: 10px;
     align-self: flex-start;
     word-wrap: break-word;
-    border: 2px solid transparent;
-    border-image: linear-gradient(30deg, #ff008e, #ffcd1e) 1 100%;
-    background-color: #1d1d20;
+    background: linear-gradient(260deg,rgba(0,0,0,0.3) 50%, #ff008c99 80%, #10c2cfc0 100%);
+
     
-    :nth-child(even) {
-        align-self: flex-end;
-        margin-left: 3rem;
-    }
+    
 
     @media(max-width: 700px) {
-      padding: 10px;
-      :nth-child(even){
-        align-self: flex-start;
-        margin-left: 0;
-        margin-right:3rem;
-      }
+        max-width: 80%;
     }       
 
 `
 
 const MessageContent = styled.p`
+
     font-size: 20px;
     line-height: 28px;
     @media(max-width: 700px) {
@@ -100,9 +99,10 @@ const MessageContent = styled.p`
 `
 
 const MessageUser = styled.div`
-    margin-top: 16px;
+    max-width: 90%;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
     @media(max-width: 700px) {
         margin-top: 2px;
     } 
@@ -138,7 +138,7 @@ const UserName = styled.span`
 const MessageTimeStamp = styled.span`
     font-size: 8px;
     @media(max-width: 700px) {
-        align-self: flex-end;
+        
     }
 `
 
@@ -202,7 +202,7 @@ export const MessageList = () => {
             day: 'numeric' 
         };
         
-        return `${createdAt.toLocaleDateString("pt-BR", options)} - ${createdAt.getHours()}:${createdAt.getMinutes()}`
+        return `${createdAt.getHours()}:${createdAt.getMinutes()}`
     }
 
     const scrollToBottom = () => {
@@ -213,17 +213,21 @@ export const MessageList = () => {
     }
 
     const mountMessageComponent = () => {
-        const messagesComponents = messages.map(({text,user,created_at,id}) => (                                
-            <Message key={id} id={id}>
-                <MessageTimeStamp> {formatDate(created_at)} </MessageTimeStamp>
-                <MessageContent> {text} </MessageContent>
+        const messagesComponents = messages.map(({text,user,created_at,id}) => ( 
+            <>  
                 <MessageUser>
                     <UserImageDiv>
                         <UserImage src={user.avatar_url} alt="user profile picture" />
                     </UserImageDiv>
-                    <UserName> {user.name} </UserName>
-                </MessageUser>
-            </Message>
+                    <Message key={id} id={id}>
+                        <MessageContent> {text} </MessageContent>
+                    </Message>
+                    <MessageTimeStamp> {formatDate(created_at)} </MessageTimeStamp>
+
+                </MessageUser>  
+
+                
+            </>
         ))
         
         const noMessageWarning = () => (
