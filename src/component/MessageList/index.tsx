@@ -127,8 +127,10 @@ const UserImage = styled.img`
     
 `
 const UserName = styled.span`
-    margin-left: 12px;
     font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffcd1e;
     @media(max-width: 700px) {
       font-size: 12px;
     }   
@@ -216,10 +218,13 @@ export const MessageList = () => {
         const messagesComponents = messages.map(({text,user,created_at,id}) => ( 
             <>  
                 <MessageUser>
-                    <UserImageDiv>
-                        <UserImage src={user.avatar_url} alt="user profile picture" />
-                    </UserImageDiv>
+                    <a href={`https://github.com/${user.login}`} target="_blank" >
+                        <UserImageDiv>
+                            <UserImage src={user.avatar_url} alt="user profile picture" />
+                        </UserImageDiv>
+                    </a>
                     <Message key={id} id={id}>
+                    <UserName>{user.name}</UserName>
                         <MessageContent> {text} </MessageContent>
                     </Message>
                     <MessageTimeStamp> {formatDate(created_at)} </MessageTimeStamp>
