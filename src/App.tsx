@@ -5,9 +5,11 @@ import { LoginBox } from './component/LoginBox'
 import { MessageList } from './component/MessageList'
 import { SendMessageForm } from './component/SendMessageForm'
 import { AuthContext } from './context/auth'
+import gundam from '/assets/gundam.gif'
 import logoImage from '/assets/logo.svg'
 import redCar from '/assets/deloan_red_01.png'
 import greenCar from '/assets/penetrator_green_01.png'
+import { BackgroundMusic } from './component/BackgroundMusic'
 
 
 const LogoImage = styled.img`
@@ -19,11 +21,62 @@ const LogoImage = styled.img`
       
     }
 `
+
+const CreatorNoteDiv = styled.div`
+
+  position: fixed;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  letter-spacing: 1px;
+`
+const CreatorNoteImage = styled.img`
+  position: absolute;
+  margin: auto;
+  mix-blend-mode: screen;
+  filter: brightness(0.8);
+  filter: drop-shadow(2px 10px 2px black);
+  height: 300px;
+  align-self: center;
+`
+
+const CreatorNote = styled.h3`
+  
+  background-image: url('https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif');
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 1000%;
+  width: 100vw;
+  margin: auto;
+  animation: glow 1s ease-in-out infinite alternate;
+  @keyframes glow {
+      from {
+        text-shadow: 0 0 20px #c011b7;
+      }
+      to {
+        text-shadow: 0 0 30px #b63b9b, 0 0 10px #d138d1;
+      }
+  }
+  
+  @media(max-width: 700px) {
+      bottom: auto;
+      height: 15px;
+      font-size: 4rem;
+  }
+`
 const RedCarAsset = styled.img`
   position: fixed;
   top: 63vh;
   height: 40px;
-  animation:driveBy 66s ease-in-out infinite ;
+  mix-blend-mode: screen;
+  filter: brightness(200%);
+  animation:driveBy 66s ease-in infinite ;
         
         @keyframes driveBy { 
             0% { 
@@ -49,7 +102,9 @@ const RedCarAsset = styled.img`
     position: fixed;
     top: 65vh;
     height: 150px;
-    animation:driveBy 70s ease-in-out infinite ;
+    mix-blend-mode: screen;
+    filter: brightness(200%);
+    animation:driveBy 70s ease-out infinite ;
           
           @keyframes driveBy { 
               0% { 
@@ -91,16 +146,40 @@ const Main = styled.main`
   
 export const App = () => {
   const [ viewAmountMessages, setViewAmountMessages ] = useState(10)
+  const [konami, setKonami] = useState(false)
+  const [keysPressed, setKeysPressed] = useState<any>('')
   const { user } = useContext(AuthContext)
   
+  window.onkeyup = (e) => {
+    if(keysPressed.length === 0){
+      setKeysPressed(`${e.key}+`)
+    } else if(keysPressed.length > 0 && keysPressed.split('+').filter((word:any) => word !== '').length < 7){
+      setKeysPressed(`${keysPressed}${e.key}+`)
+    } else if(keysPressed.split('+').filter((word:any) => word !== '').length  === 7 && !konami){
+      const matchKonami = keysPressed.split('+').filter((word:any) => word !== '').join('')
+      if(matchKonami === 'carlote'){
+        setKonami(true)
+      } else {
+        setKonami(false)
+        setKeysPressed('')
+      }
+    }  else if (konami) {
+        const timer = setTimeout(() => {
+          console.log('desligando')
+          setKonami(false)
+          setKeysPressed('')
+        }, 1000)
+    }
+  }
   
   
   return (
       <> 
+        {konami ? (<CreatorNoteDiv><CreatorNoteImage src={gundam}/><CreatorNote> シャーロット </CreatorNote></CreatorNoteDiv>) : null}
         {/* <button onClick={() => setViewAmountMessages(viewAmountMessages + 10)}> ver mais </button>
         <button onClick={() => viewAmountMessages <= 10 ? null : setViewAmountMessages(viewAmountMessages - 10)}> ver menos </button> */}
         <div style={{width: '100%', display: 'flex', alignContent: 'center',alignItems: 'center'}}>
-          <LogoImage src={logoImage} alt="DOWhile event logo by rocketseat" />
+        <BackgroundMusic/><LogoImage src={logoImage} alt="DOWhile event logo by rocketseat" />
         </div>
         <RedCarAsset src={redCar} />
         <GreenCarAsset src={greenCar} />
@@ -109,7 +188,7 @@ export const App = () => {
           <MessageList />
         {!!user ? <SendMessageForm/> :<LoginBox />}
         </Main>
+        <a style={{textDecoration: 'none', color: 'white', width: '100%', display:'inline-block', textAlign: 'center'}}href="https://www.instagram.com/carloxxlima/"> Created by Kaspa </a>
       </>
   )
 }
-
