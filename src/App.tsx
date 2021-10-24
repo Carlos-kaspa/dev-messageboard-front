@@ -10,14 +10,16 @@ import logoImage from '/assets/logo.svg'
 import redCar from '/assets/deloan_red_01.png'
 import greenCar from '/assets/penetrator_green_01.png'
 import { BackgroundMusic } from './component/BackgroundMusic'
+import { VscSignOut } from "react-icons/vsc"
 
 
 const LogoImage = styled.img`
     height: 28px;
-    margin: 32px auto;
+    margin: 5px auto;
 
     @media(max-width: 700px) {
       height: 10px;
+      margin: auto;
       
     }
 `
@@ -143,12 +145,31 @@ const Main = styled.main`
       position: relative;
     }
   `
-  
+  const SignOutButton = styled.button`
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-right: 10rem;
+  background: transparent;
+  border: 0;
+  color: #c4c4cc;
+  cursor: pointer;
+  :hover{
+      filter: brightness(0.9);
+  }
+
+  @media(max-width: 700px) {
+    align-self: flex-end;
+    margin-right: 10px;
+  }
+
+
+`
 export const App = () => {
   const [ viewAmountMessages, setViewAmountMessages ] = useState(10)
   const [konami, setKonami] = useState(false)
   const [keysPressed, setKeysPressed] = useState<any>('')
-  const { user } = useContext(AuthContext)
+  const { user, signOut } = useContext(AuthContext)
   
   window.onkeyup = (e) => {
     if(keysPressed.length === 0){
@@ -180,6 +201,8 @@ export const App = () => {
         <button onClick={() => viewAmountMessages <= 10 ? null : setViewAmountMessages(viewAmountMessages - 10)}> ver menos </button> */}
         <div style={{width: '100%', display: 'flex', alignContent: 'center',alignItems: 'center'}}>
         <BackgroundMusic/><LogoImage src={logoImage} alt="DOWhile event logo by rocketseat" />
+        <SignOutButton onClick={signOut}> <VscSignOut size='32' style={{paddingRight: 5}}/> Sair </SignOutButton>
+
         </div>
         <RedCarAsset src={redCar} />
         <GreenCarAsset src={greenCar} />

@@ -27,30 +27,7 @@ const SendMessageFormWrapper = styled.div`
 
 `
 
-const SignOutButton = styled.button`
-    display: flex;
-    align-items: center;
-    align-content: center;
-    background: transparent;
-    border: 0;
-    color: #c4c4cc;
-    position: absolute;
-    left: 24px;
-    top: 24px;
-    cursor: pointer;
-    :hover{
-        filter: brightness(0.9);
-    }
 
-    @media(max-width: 700px) {
-        position: fixed;
-        right: 15px;
-        left: auto;
-        top: 10px;
-    }
-
-
-`
 
 const UserInfo = styled.header`
     display: flex;
@@ -220,7 +197,6 @@ export const SendMessageForm = () => {
 
     return (
         <SendMessageFormWrapper>
-        <SignOutButton onClick={signOut}> <VscSignOut size='32' style={{paddingRight: 5}}/> Sair </SignOutButton>
         <UserInfo>
             <UserImageDiv>
                 <UserImage src={user?.avatar_url} alt={`${user?.name} profile picture`} />
