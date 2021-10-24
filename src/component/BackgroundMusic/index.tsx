@@ -19,11 +19,11 @@ const AudioButton = styled.button`
 
 const AudioControlDiv = styled.div`
     display: flex;
-    position: absolute;
+    
     align-items: center;
     align-content: space-between;
     gap: 5px;
-    margin-left: 0;
+    margin-left: 10px;
     @media(min-width: 700px) {
       margin-left: 10rem;
   }
