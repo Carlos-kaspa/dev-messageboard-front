@@ -117,7 +117,7 @@ const TextArea = styled.textarea`
         color: #9d9d99;
     }
     @media(max-width: 700px) {
-        height: 20px;
+        height: 15px;
         background: rgba(255,255,255,0.1);
         color:  #ffcd1e;
         font-size: 14px;

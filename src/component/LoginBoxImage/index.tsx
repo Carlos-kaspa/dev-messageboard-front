@@ -7,7 +7,7 @@ const Video = styled.video`
     filter: grayscale();
 
     @media(max-width: 700px) {
-      height: 40rem;
+      height: 100%;
       position: fixed;
       top: -20px;
     }
