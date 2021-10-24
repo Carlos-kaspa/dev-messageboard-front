@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/auth"
 import { LoginBoxImage } from "../LoginBoxImage"
 
 const LoginBoxWrapper = styled.div`
-        height: 100vh;
+        height: 90vh;
         width: 100%;
         background: #000000;
         
