@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { api } from '../../services/api'
 import io from 'socket.io-client'
 import { BottomMessage, MessageListComponent, MessageListWrapper } from "./components"
 import { IMessages } from "./interfaces"
 import { mountMessageComponent } from "./methods"
+import { AuthContext } from "../../context/auth"
 
 
 
@@ -17,9 +18,10 @@ socket.on('new_message', newMessage => {
 })
 
 export const MessageList = () => {
-
+    const { user } = useContext(AuthContext)
     const [ messages, setMessages ] = useState<IMessages[]>([])
     const bottomMessageRef = useRef<any>()
+
     const scrollToBottom = () => {
         bottomMessageRef.current.scrollIntoView({
             behavior: 'smooth',
@@ -58,7 +60,7 @@ export const MessageList = () => {
         <>
             <MessageListWrapper>
                 <MessageListComponent>
-                    {mountMessageComponent(messages)}
+                    {mountMessageComponent(messages,user)}
                     <BottomMessage ref={bottomMessageRef} id='bottomDiv'/>
                 </MessageListComponent>
             </MessageListWrapper>

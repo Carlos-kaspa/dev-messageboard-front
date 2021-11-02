@@ -17,9 +17,7 @@ export const LoginBoxImage = () => {
   const videoSource = '/assets/object.mp4'
 
   return(
-    <Video autoPlay={true} loop={true} muted>
-      <source src={videoSource}/>
-    </Video>
+   <div></div>
   )
   
 }
