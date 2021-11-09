@@ -199,13 +199,12 @@ export const App = () => {
         {konami ? (<CreatorNoteDiv><CreatorNoteImage src={gundam}/><CreatorNote> シャーロット </CreatorNote></CreatorNoteDiv>) : null}
         {/* <button onClick={() => setViewAmountMessages(viewAmountMessages + 10)}> ver mais </button>
         <button onClick={() => viewAmountMessages <= 10 ? null : setViewAmountMessages(viewAmountMessages - 10)}> ver menos </button> */}
-        <div style={{width: '100%', display: 'flex', alignContent: 'center',alignItems: 'center'}}>
-        <BackgroundMusic/><LogoImage src={logoImage} alt="DOWhile event logo by rocketseat" />
-        <SignOutButton onClick={signOut}> <VscSignOut size='32' style={{paddingRight: 5}}/> Sair </SignOutButton>
-
+        <div style={{width: '100%', display: 'flex', alignContent: 'space-between', justifyContent: 'space-between', padding: '0 2rem'}}>
+          <BackgroundMusic/>
+          <SignOutButton onClick={signOut}> <VscSignOut size='32' style={{paddingRight: 5}}/> Sair </SignOutButton>
         </div>
-        <RedCarAsset src={redCar} />
-        <GreenCarAsset src={greenCar} />
+        {/* <RedCarAsset src={redCar} />
+        <GreenCarAsset src={greenCar} /> */}
         <BackgroundVideo />
         <Main>
           <MessageList />
