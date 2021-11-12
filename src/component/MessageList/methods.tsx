@@ -35,7 +35,9 @@ export const mountMessageComponent = (messages:any, loggedUser:any) => {
     const messagesByDate = messages.reduce((acum:any,curr:any) => { 
         const {text,user,created_at,id}:IMessages = curr
         const message = {text,user,created_at,id}
-        acum[createMessageDateTags(created_at)] = []
+        if(!acum[createMessageDateTags(created_at)]){
+            acum[createMessageDateTags(created_at)] = []
+        }
         acum[createMessageDateTags(created_at)].push(message)
         return acum
     },[])
